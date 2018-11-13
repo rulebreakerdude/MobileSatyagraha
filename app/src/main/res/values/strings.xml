@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Mobile Satyagraha</string>
+    <string name="base_url">http://flask-aws-dev.ap-south-1.elasticbeanstalk.com/</string>
+</resources>
