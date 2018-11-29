@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -123,6 +124,7 @@ public class ActionPage extends AppCompatActivity {
 
         String url = getString(R.string.base_url)+"problemAgainstUser/"+username;
 
+
         stringRequest1 = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -134,6 +136,7 @@ public class ActionPage extends AppCompatActivity {
 
                             //traversing through all the object
                             for (int i = 0; i < array.length(); i++) {
+
 
                                 //getting product object from json array
                                 JSONObject jsonProblem = array.getJSONObject(i);
@@ -169,6 +172,7 @@ public class ActionPage extends AppCompatActivity {
                 });
         stringRequest1.setTag(REQUESTTAG1);
         requestQueue= Volley.newRequestQueue(this);
+        stringRequest1.setShouldCache(false);
         requestQueue.add(stringRequest1);
         problemAdapter2.notifyDataSetChanged();
     }
