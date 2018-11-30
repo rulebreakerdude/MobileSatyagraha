@@ -172,6 +172,7 @@ public class ActionPage extends AppCompatActivity {
                 });
         stringRequest1.setTag(REQUESTTAG1);
         requestQueue= Volley.newRequestQueue(this);
+        requestQueue.getCache().clear();
         stringRequest1.setShouldCache(false);
         requestQueue.add(stringRequest1);
         problemAdapter2.notifyDataSetChanged();
