@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -62,6 +63,7 @@ public class SignupActivity extends AppCompatActivity {
             progressDialog.show();
 
 
+
             requestQueue = Volley.newRequestQueue(this);
             String url = getString(R.string.base_url) + "signup";
 
@@ -107,6 +109,8 @@ public class SignupActivity extends AppCompatActivity {
                 }
             };
             stringRequest.setTag(REQUESTTAG);
+            requestQueue.getCache().clear();
+            stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);
         }
     }

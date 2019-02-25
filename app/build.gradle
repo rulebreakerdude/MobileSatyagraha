@@ -6,8 +6,8 @@ android {
         applicationId "org.cgnetswara.mobilesatyagraha"
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 11
-        versionName "2.1.1"
+        versionCode 13
+        versionName "2.2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

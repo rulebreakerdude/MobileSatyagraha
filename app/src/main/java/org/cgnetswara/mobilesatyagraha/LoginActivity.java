@@ -84,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             String reply = jsonResponse.getString("reply");
-                            Log.d("aaa", reply);
                             switch (reply) {
                                 case "User does not exist":
                                     progressDialog.dismiss();
@@ -113,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
+                error.printStackTrace();
                 Toast.makeText(getBaseContext(), "Network Error", Toast.LENGTH_LONG).show();
 
             }
@@ -129,6 +129,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         stringRequest.setTag(REQUESTTAG);
+        requestQueue.getCache().clear();
+        stringRequest.setShouldCache(false);
         requestQueue.add(stringRequest);
 
     }

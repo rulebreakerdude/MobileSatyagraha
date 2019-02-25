@@ -70,7 +70,7 @@ public class ActionPage extends AppCompatActivity {
         progressDialog.show();
         String url = getString(R.string.base_url)+"canAdoptProblem/"+username;
 
-        stringRequest2 = new StringRequest(Request.Method.GET, url,
+        stringRequest2 = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -99,6 +99,8 @@ public class ActionPage extends AppCompatActivity {
                 });
         stringRequest2.setTag(REQUESTTAG2);
         requestQueue= Volley.newRequestQueue(this);
+        requestQueue.getCache().clear();
+        stringRequest2.setShouldCache(false);
         requestQueue.add(stringRequest2);
     }
 
@@ -112,7 +114,7 @@ public class ActionPage extends AppCompatActivity {
     }
 
     private void onResponseNo() {
-        Toast.makeText(getBaseContext(), "Sorry! You already have 2 adopted problems. Can't adopt more.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Sorry! You have already adopted a problem. Can't adopt more.", Toast.LENGTH_LONG).show();
     }
 
     public void loadProblems(){
@@ -125,7 +127,7 @@ public class ActionPage extends AppCompatActivity {
         String url = getString(R.string.base_url)+"problemAgainstUser/"+username;
 
 
-        stringRequest1 = new StringRequest(Request.Method.GET, url,
+        stringRequest1 = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -146,6 +148,7 @@ public class ActionPage extends AppCompatActivity {
                                 problem.setText(jsonProblem.getString("problem_text"));
                                 problem.setCount(jsonProblem.getString("duration"));
                                 problem.setDatetime(jsonProblem.getString("datetime"));
+
 
                                 problem.setAccessingUser(username);
                                 problem.setNameOfAccessingUser(name);
